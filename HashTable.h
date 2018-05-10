@@ -1,17 +1,7 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include "HashEntry.h"
 using namespace std;
 const int TABLE_SIZE = 128;
-
-class HashEntry {
-public:
-	int key;
-	int value;
-	HashEntry(int key, int value) {
-		this->key = key;
-		this->value = value;
-	}
-};
 
 class HashMap {
 private:
