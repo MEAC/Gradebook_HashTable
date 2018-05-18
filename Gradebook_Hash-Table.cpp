@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <fstream>
 
 int main(int argc, char * argv[]) {
 	ofstream outputFile;
