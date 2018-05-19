@@ -1,9 +1,12 @@
-#include "HashTable.h"
+#include "HashMap.h"
 #include "clearScreen.h"
 #include <iostream>
 #include <cstdlib>
 #include <string>
 #include <fstream>
+#include <iomanip>
+using namespace std;
+
 
 int main(int argc, char * argv[]) {
 	ofstream outputFile;
@@ -12,27 +15,39 @@ int main(int argc, char * argv[]) {
 	char createNewFile;
 
 	cout << endl << "Welcome to your gradebook" << endl;
-	cout << "----------------------" << endl;
+	cout << "--------------------------" << endl;
 	cout << "Do you wish to create a new gradebook file for a class (Y/N) ?" << endl;
 	cin >> createNewFile;
+
 	if (createNewFile == 'Y' || createNewFile == 'y') {
 		cout << "Enter file name: ";
 		cin >> fileName;
 
 		outputFile.open(fileName.c_str());
 		cout << "The file you created is " << fileName << endl;
+		outputFile << "Student ID" << setw(15) << "Grade(s)" << endl;
+		outputFile << "--------------" << setw(19) << "------------" << endl;
+	}
+
+	if (!outputFile)
+	{
+		cerr << "An error has occured opening the file";
+		exit(1);
 	}
 
 	HashMap hash;
 	int key, value;
 	int choice;
-	while (true) {
-		cout << endl;
+
+	while (1) {
+		cout << endl << endl;
+		cout << "Gradebook options" << endl;
+		cout << "--------------------------" << endl;
 		cout << "1. Insert a grade into the gradebook" << endl;
 		cout << "2. Search a students grade with their student ID" << endl;
 		cout << "3. Delete a students grade with their student ID" << endl;
-		cout << "Enter your choice (1-3): ";
-		cout << "WARNING!! ANY CHARACTER OR NUMBER ENTERED OTHER THAN (1-3) WILL TERMINATE THIS PROGRAM!" << endl;
+		cout << "4. Exit" << endl;
+		cout << "Enter your choice: ";
 		cin >> choice;
 
 		switch (choice) {
@@ -41,23 +56,18 @@ int main(int argc, char * argv[]) {
 			cin >> value;
 			cout << "Enter the ID of the student, numbers only: ";
 			cin >> key;
-
+			outputFile << key;
+			outputFile << value;
 			hash.Insert(key, value);
 			break;
 
 		case 2:
 			cout << "Enter the ID of the student to be searched: ";
 			cin >> key;
+			cout << "Grade(s) at student ID " << key << " : ";
 			if (hash.Search(key) == -1) {
 				cout << "No grade found at " << key << " ID" << endl;
-				//cout << "Press ENTER on the keyboard to continue . . ." << endl;
-				//getchar();
-				//clearScreen();
 				continue;
-			}
-			else {
-				cout << "Grade at students " << key << " : ";
-				cout << hash.Search(key) << endl;
 			}
 			break;
 
@@ -67,11 +77,12 @@ int main(int argc, char * argv[]) {
 			hash.Remove(key);
 			break;
 
-		default:
-			//cout << "Sorry, you inputed an invalid choice";
+		case 4:
 			exit(1);
+
+		default:
+			cout << "\nEnter correct option\n";
 		}
 	}
-
 	return 0;
 }
