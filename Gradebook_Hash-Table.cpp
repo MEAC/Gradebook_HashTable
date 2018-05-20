@@ -40,7 +40,7 @@ int main(int argc, char * argv[]) {
 	int key, value;
 	int choice;
 
-	while (1) {
+	do {
 		cout << endl << endl;
 		cout << "Gradebook options" << endl;
 		cout << "--------------------------" << endl;
@@ -53,17 +53,22 @@ int main(int argc, char * argv[]) {
 
 		switch (choice) {
 		case 1:
-			cout << "Enter the students grade: ";
+			clearScreen();
+			cout << "Enter the students grade (without percentage symbol) : ";
 			cin >> value;
-			cout << "Enter the ID of the student, numbers only: ";
+			cout << "Enter the ID of the student (numbers only) : ";
 			cin >> key;
 			outputFile << key << setw(19) << value << endl;
 			hash.Insert(key, value);
 			break;
 
 		case 2:
+			clearScreen();
 			cout << "Enter the ID of the student to be searched: ";
 			cin >> key;
+			//while (!outputFile.eof()) {
+				//outputFile >> key >> value;
+			//}
 			cout << "Grade(s) at student ID " << key << " : ";
 			if (hash.Search(key) == -1) {
 				cout << "No grade found at " << key << " ID" << endl;
@@ -72,6 +77,7 @@ int main(int argc, char * argv[]) {
 			break;
 
 		case 3:
+			clearScreen();
 			cout << "Enter the student ID number to delete their grade: ";
 			cin >> key;
 			hash.Remove(key);
@@ -84,7 +90,7 @@ int main(int argc, char * argv[]) {
 			clearScreen();
 			cout << "\nPlease enter a valid choice . . . \n";
 		}
-	}
+	} while (choice != 4);
 	outputFile.close();
 	return 0;
 }
