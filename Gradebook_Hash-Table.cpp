@@ -16,21 +16,22 @@ int main(int argc, char * argv[]) {
 
 	cout << endl << "Welcome to your gradebook" << endl;
 	cout << "--------------------------" << endl;
-	cout << "Do you wish to create a new gradebook file for a class (Y/N) ?" << endl;
+	cout << "Do you wish to create a new gradebook file for a class (Y/N) ?" << endl << endl;
+	cout << "*WARNING* - not creating a gradebook file will not save your progress . . ." << endl << endl;
+	cout << "Your Response : ";
 	cin >> createNewFile;
 
 	if (createNewFile == 'Y' || createNewFile == 'y') {
-		cout << "Enter file name: ";
+		cout << "Enter file name, with the type of file extension (example: Joe2018COMSC_MidtermGades.txt) : ";
 		cin >> fileName;
 
 		outputFile.open(fileName.c_str());
 		cout << "The file you created is " << fileName << endl;
-		outputFile << "Student ID" << setw(15) << "Grade(s)" << endl;
-		outputFile << "--------------" << setw(19) << "------------" << endl;
+		outputFile << "Student ID" << setw(15) << "Grade(s) %" << endl;
+		outputFile << "--------------" << setw(19) << "--------------" << endl;
 	}
 
-	if (!outputFile)
-	{
+	if (!outputFile) {
 		cerr << "An error has occured opening the file";
 		exit(1);
 	}
@@ -56,8 +57,7 @@ int main(int argc, char * argv[]) {
 			cin >> value;
 			cout << "Enter the ID of the student, numbers only: ";
 			cin >> key;
-			outputFile << key;
-			outputFile << value;
+			outputFile << key << setw(19) << value << endl;
 			hash.Insert(key, value);
 			break;
 
@@ -81,8 +81,10 @@ int main(int argc, char * argv[]) {
 			exit(1);
 
 		default:
-			cout << "\nEnter correct option\n";
+			clearScreen();
+			cout << "\nPlease enter a valid choice . . . \n";
 		}
 	}
+	outputFile.close();
 	return 0;
 }
