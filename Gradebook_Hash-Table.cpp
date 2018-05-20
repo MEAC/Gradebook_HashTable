@@ -7,12 +7,15 @@
 #include <iomanip>
 using namespace std;
 
-
 int main(int argc, char * argv[]) {
 	ofstream outputFile;
 	string input;
 	string fileName;
 	char createNewFile;
+
+	HashMap hash;
+	int key, value;
+	int choice;
 
 	cout << endl << "Welcome to your gradebook" << endl;
 	cout << "--------------------------" << endl;
@@ -26,19 +29,16 @@ int main(int argc, char * argv[]) {
 		cin >> fileName;
 
 		outputFile.open(fileName.c_str());
-		cout << "The file you created is " << fileName << endl;
+		cout << "The file you created is " << fileName << endl << endl;
 		outputFile << "Student ID" << setw(15) << "Grade(s) %" << endl;
 		outputFile << "--------------" << setw(19) << "--------------" << endl;
-	}
 
-	if (!outputFile) {
-		cerr << "An error has occured opening the file";
-		exit(1);
+		if (!outputFile) {
+			cerr << "An error has occured opening the file . . ." << endl;
+			cerr << "Now shutting down . . . " << endl;
+			exit(1);
+		}
 	}
-
-	HashMap hash;
-	int key, value;
-	int choice;
 
 	do {
 		cout << endl << endl;
@@ -58,6 +58,7 @@ int main(int argc, char * argv[]) {
 			cin >> value;
 			cout << "Enter the ID of the student (numbers only) : ";
 			cin >> key;
+
 			outputFile << key << setw(19) << value << endl;
 			hash.Insert(key, value);
 			break;
@@ -66,10 +67,8 @@ int main(int argc, char * argv[]) {
 			clearScreen();
 			cout << "Enter the ID of the student to be searched: ";
 			cin >> key;
-			//while (!outputFile.eof()) {
-				//outputFile >> key >> value;
-			//}
 			cout << "Grade(s) at student ID " << key << " : ";
+
 			if (hash.Search(key) == -1) {
 				cout << "No grade found at " << key << " ID" << endl;
 				continue;
