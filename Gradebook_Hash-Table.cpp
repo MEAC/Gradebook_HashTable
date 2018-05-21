@@ -1,7 +1,7 @@
+#include "stdafx.h"
 #include "HashMap.h"
 #include "clearScreen.h"
 #include <iostream>
-#include <cstdlib>
 #include <string>
 #include <fstream>
 #include <iomanip>
@@ -20,12 +20,12 @@ int main(int argc, char * argv[]) {
 	cout << endl << "Welcome to your gradebook" << endl;
 	cout << "--------------------------" << endl;
 	cout << "Do you wish to create a new gradebook file for a class (Y/N) ?" << endl << endl;
-	cout << "*WARNING* - not creating a gradebook file will not save your progress . . ." << endl << endl;
+	cout << "*WARNING* - not creating a gradebook file will not save your progress when this program is terminated . . ." << endl << endl;
 	cout << "Your Response : ";
 	cin >> createNewFile;
 
 	if (createNewFile == 'Y' || createNewFile == 'y') {
-		cout << "Enter file name, with the type of file extension (example: Joe2018COMSC_MidtermGades.txt) : ";
+		cout << "Enter file name, with the type of file extension (example: Joe2018COMSC_Midterm1Gades.txt) : ";
 		cin >> fileName;
 
 		outputFile.open(fileName.c_str());
@@ -48,7 +48,7 @@ int main(int argc, char * argv[]) {
 		cout << "2. Search a students grade with their student ID" << endl;
 		cout << "3. Delete a students grade with their student ID" << endl;
 		cout << "4. Exit" << endl;
-		cout << "Enter your choice: ";
+		cout << "Enter your choice (1-4) : ";
 		cin >> choice;
 
 		switch (choice) {
@@ -70,7 +70,7 @@ int main(int argc, char * argv[]) {
 			cout << "Grade(s) at student ID " << key << " : ";
 
 			if (hash.Search(key) == -1) {
-				cout << "No grade found at " << key << " ID" << endl;
+				cout << "No grade(s) found at " << key << " ID" << endl;
 				continue;
 			}
 			break;
@@ -83,6 +83,8 @@ int main(int argc, char * argv[]) {
 			break;
 
 		case 4:
+			clearScreen();
+			cout << "Thank you for grading!" << endl;
 			exit(1);
 
 		default:
