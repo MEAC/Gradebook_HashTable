@@ -1,3 +1,2 @@
 # Gradebook_Hash-Table
-Hash table algorithm that asks a user (teacher) to create a file for class and insert/search/delete the grades of a specific students student ID.
-((In progress))
+  This project consists of hash tables which are chained by a singly linked list. Users have a couple of options when running the .exe file. These options consist of: creating a file for a user to send information such as student ID and grades, insert grades for a student ID number, search a students grade with their student ID, delete a students grade with their student ID, and to exit the program.
