@@ -23,6 +23,13 @@ int main(int argc, char * argv[]) {
 	cout << "*WARNING* - not creating a gradebook file will not save your progress when this program is terminated . . ." << endl << endl;
 	cout << "Your Response : ";
 	cin >> createNewFile;
+	
+	if (cin.fail()) {
+		cin.clear();
+
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+	}
 
 	if (createNewFile == 'Y' || createNewFile == 'y') {
 		cout << "Enter file name, with the type of file extension (example: Joe2018COMSC_Midterm1Gades.txt) : ";
@@ -50,6 +57,14 @@ int main(int argc, char * argv[]) {
 		cout << "4. Exit" << endl;
 		cout << "Enter your choice (1-4) : ";
 		cin >> choice;
+
+		if (cin.fail()) {
+			//cerr << "ERROR -- You did not enter an integer";
+			cin.clear();
+
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+		}
 
 		switch (choice) {
 		case 1:
@@ -89,7 +104,7 @@ int main(int argc, char * argv[]) {
 
 		default:
 			clearScreen();
-			cout << "\nPlease enter a valid choice . . . \n";
+			cout << "\nInvalid choice, please enter a valid choice . . . \n";
 		}
 	} while (choice != 4);
 	outputFile.close();
