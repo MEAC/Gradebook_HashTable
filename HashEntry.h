@@ -7,6 +7,6 @@ public:
 	HashEntry(int key, int value) {
 		this->key = key;
 		this->value = value;
-		this->next = NULL;
+		this->next = nullptr;
 	}
 };
