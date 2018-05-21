@@ -28,7 +28,6 @@ int main(int argc, char * argv[]) {
 		cin.clear();
 
 		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
 	}
 
 	if (createNewFile == 'Y' || createNewFile == 'y') {
@@ -63,7 +62,6 @@ int main(int argc, char * argv[]) {
 			cin.clear();
 
 			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
 		}
 
 		switch (choice) {
