@@ -99,6 +99,7 @@ int main(int argc, char * argv[]) {
 		case 4:
 			clearScreen();
 			cout << "Thank you for grading!" << endl;
+			outputFile.close();
 			exit(1);
 
 		default:
