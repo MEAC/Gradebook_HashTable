@@ -34,6 +34,7 @@ int main(int argc, char * argv[]) {
 	if (createNewFile == 'Y' || createNewFile == 'y') {
 		cout << "Enter file name, with the type of file extension (example: Joe2018COMSC_Midterm1Gades.txt) : ";
 		cin >> fileName;
+		clearScreen();
 
 		outputFile.open(fileName.c_str());
 		cout << "The file you created is " << fileName << endl << endl;
